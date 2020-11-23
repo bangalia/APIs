@@ -86,13 +86,18 @@ def get_min_temp(results):
     """Returns the minimum temp for the given hourly weather objects."""
     # TODO: Fill in this function to return the minimum temperature from the
     # hourly weather data.
+    context = {
+        'min_temp': get_min_temp(result_hourly)
+    }
     pass
 
 def get_max_temp(results):
     """Returns the maximum temp for the given hourly weather objects."""
     # TODO: Fill in this function to return the maximum temperature from the
     # hourly weather data.
-
+    context{
+        'max_temp': get_max_temp(result_hourly)
+    }
     pass
 
 def get_lat_lon(city_name):
