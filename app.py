@@ -51,8 +51,8 @@ def results():
         # TODO: Enter query parameters here for the 'appid' (your api key),
         # the city, and the units (metric or imperial).
         # See the documentation here: https://openweathermap.org/current
-        'apiid': API_KEY
-        'city': city
+        'apiid': '81e31261dddca904b71ade224b3ab056'
+        'city': 'city'
         'units': 'imperial'
 
     }
@@ -75,8 +75,8 @@ def results():
         'temp': result_json['main']['temp'],
         'humidity': result_json['main']['humidity'],
         'wind_speed': result_json['wind'][1],
-        'sunrise': datatime.fromtimestamp(result_json),
-        'sunset': datatime.fromtimestamp(result_json),
+        'sunrise': datatime.fromtimestamp(result_json['sys']['sunrise']),
+        'sunset': datatime.fromtimestamp(result_json['sys']['sunset']),
         'units_letter': get_letter_for_units(units)
     }
 
@@ -92,6 +92,7 @@ def get_max_temp(results):
     """Returns the maximum temp for the given hourly weather objects."""
     # TODO: Fill in this function to return the maximum temperature from the
     # hourly weather data.
+
     pass
 
 def get_lat_lon(city_name):
@@ -107,9 +108,9 @@ def historical_results():
     """Displays historical weather forecast for a given day."""
     # TODO: Use 'request.args' to retrieve the city & units from the query
     # parameters.
-    city = ''
+    city = request.args.get('city')
     date = '2020-08-26'
-    units = ''
+    units = request.args.get('units')
     date_obj = datetime.strptime(date, '%Y-%m-%d')
     date_in_seconds = date_obj.strftime('%s')
 
@@ -121,7 +122,9 @@ def historical_results():
         # latitude, longitude, units, & date (in seconds).
         # See the documentation here (scroll down to "Historical weather data"):
         # https://openweathermap.org/api/one-call-api
-        
+        appid: '81e31261dddca904b71ade224b3ab056'
+        latitute: 'lat'
+        longitude: 'lon'
     }
 
     result_json = requests.get(url, params=params).json()
@@ -140,7 +143,7 @@ def historical_results():
         'lat': latitude,
         'lon': longitude,
         'units': '',
-        'units_letter': '', # should be 'C', 'F', or 'K'
+        'units_letter': 'F', # should be 'C', 'F', or 'K'
         'description': '',
         'temp': '',
         'min_temp': get_min_temp(result_hourly),
