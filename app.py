@@ -51,8 +51,8 @@ def results():
         # TODO: Enter query parameters here for the 'appid' (your api key),
         # the city, and the units (metric or imperial).
         # See the documentation here: https://openweathermap.org/current
-        'apiid': '81e31261dddca904b71ade224b3ab056'
-        'city': 'city'
+        'apiid': '81e31261dddca904b71ade224b3ab056',
+        'city': 'city',
         'units': 'imperial'
 
     }
@@ -71,12 +71,12 @@ def results():
     context = {
         'date': datetime.now(),
         'city': city,
-        'description': result_json['weather'][0],
+        'description': result_json['weather']['description'],
         'temp': result_json['main']['temp'],
         'humidity': result_json['main']['humidity'],
         'wind_speed': result_json['wind'][1],
-        'sunrise': datatime.fromtimestamp(result_json['sys']['sunrise']),
-        'sunset': datatime.fromtimestamp(result_json['sys']['sunset']),
+        'sunrise': datetime.fromtimestamp(result_json['sys']['sunrise']),
+        'sunset': datetime.fromtimestamp(result_json['sys']['sunset']),
         'units_letter': get_letter_for_units(units)
     }
 
@@ -86,17 +86,15 @@ def get_min_temp(results):
     """Returns the minimum temp for the given hourly weather objects."""
     # TODO: Fill in this function to return the minimum temperature from the
     # hourly weather data.
-    context = {
-        'min_temp': get_min_temp(result_hourly)
-    }
+    return 
     pass
 
 def get_max_temp(results):
     """Returns the maximum temp for the given hourly weather objects."""
     # TODO: Fill in this function to return the maximum temperature from the
     # hourly weather data.
-    context{
-        'max_temp': get_max_temp(result_hourly)
+    context = {
+        #'max_temp': get_max_temp(result_hourly)         
     }
     pass
 
@@ -127,18 +125,19 @@ def historical_results():
         # latitude, longitude, units, & date (in seconds).
         # See the documentation here (scroll down to "Historical weather data"):
         # https://openweathermap.org/api/one-call-api
-        appid: '81e31261dddca904b71ade224b3ab056'
-        latitute: 'lat'
-        longitude: 'lon'
+        'appid': '81e31261dddca904b71ade224b3ab056',
+        'latitude': 'lat',
+        'longitude': 'lon'
     }
 
     result_json = requests.get(url, params=params).json()
 
     # Uncomment the line below to see the results of the API call!
-    # pp.pprint(result_json)
+    print(result_json)
 
     result_current = result_json['current']
     result_hourly = result_json['hourly']
+    print(result_hourly)
 
     # TODO: Replace the empty variables below with their appropriate values.
     # You'll need to retrieve these from the 'result_current' object above.
