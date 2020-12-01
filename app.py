@@ -86,16 +86,16 @@ def get_min_temp(results):
     """Returns the minimum temp for the given hourly weather objects."""
     # TODO: Fill in this function to return the minimum temperature from the
     # hourly weather data.
-    return 
+    min_temp = get_min_temp(result_hourly)
+    return min_temp
     pass
 
 def get_max_temp(results):
     """Returns the maximum temp for the given hourly weather objects."""
     # TODO: Fill in this function to return the maximum temperature from the
     # hourly weather data.
-    context = {
-        #'max_temp': get_max_temp(result_hourly)         
-    }
+    max_temp = get_max_temp(result_hourly)
+    return max_temp
     pass
 
 def get_lat_lon(city_name):
@@ -142,11 +142,11 @@ def historical_results():
     # TODO: Replace the empty variables below with their appropriate values.
     # You'll need to retrieve these from the 'result_current' object above.
     context = {
-        'city': '',
+        'city': city,
         'date': date_obj,
         'lat': latitude,
         'lon': longitude,
-        'units': '',
+        'units': units,
         'units_letter': 'F', # should be 'C', 'F', or 'K'
         'description': '',
         'temp': '',
